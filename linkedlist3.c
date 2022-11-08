@@ -56,17 +56,21 @@ void del_node (node * list, int pos) {
     free (del_node);
 }
 
-1->NULL
-1->2->NULL
-1->2->3->NULL
+int rec_rev_list (node * list, int n) {
+    node * rhead = NULL;
+    int lnum = 0;
+    
+    lnum = n++;
+    printf ("%d-> [%d] ln-(%d) ", list->data, n, lnum);
 
-void rec_rev_list (node * list) {
-    
-    if (list->next == NULL) {
+    if (list->link == NULL) {
         rhead = list;
+        printf (" {%d} lnum-%d \n", n, lnum);
+        
+        return n;
     }
-    
-    rec_rev_list(list->next);
+    printf ("ret = %d lnum:%d ", rec_rev_list(list->link, n), lnum);
+    return n;
 }
 
 int main () {
@@ -82,6 +86,9 @@ int main () {
     print_list (head);
     del_node (head, 8);
     print_list (head);
+    
+    printf("\n Recurssion call...\n");
+    rec_rev_list(head, 1);
     
     return 0;
 }
